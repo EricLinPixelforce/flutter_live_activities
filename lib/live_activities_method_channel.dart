@@ -35,6 +35,7 @@ class MethodChannelLiveActivities extends LiveActivitiesPlatform {
   @override
   Future<String?> createActivity(
     Map<String, dynamic> data, {
+    int? timerEndTimeMills,
     bool removeWhenAppIsKilled = false,
     Duration? staleIn,
   }) async {
@@ -43,6 +44,7 @@ class MethodChannelLiveActivities extends LiveActivitiesPlatform {
         (staleIn?.inMinutes ?? 0) >= 1 ? staleIn?.inMinutes : null;
     return methodChannel.invokeMethod<String>('createActivity', {
       'data': data,
+      'timerEndTimeMills': timerEndTimeMills,
       'removeWhenAppIsKilled': removeWhenAppIsKilled,
       'staleIn': staleInMinutes,
     });

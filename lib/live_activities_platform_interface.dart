@@ -35,6 +35,7 @@ abstract class LiveActivitiesPlatform extends PlatformInterface {
 
   Future<String?> createActivity(
     Map<String, dynamic> data, {
+    int? timerEndTimeMills,
     bool removeWhenAppIsKilled = false,
     Duration? staleIn,
   }) {

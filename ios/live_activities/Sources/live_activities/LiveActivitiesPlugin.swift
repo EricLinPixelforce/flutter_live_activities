@@ -245,7 +245,7 @@ public class LiveActivitiesPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
   }
   
   @available(iOS 16.1, *)
-  func createActivity(data: [String: Any], removeWhenAppIsKilled: Bool, staleIn: Int?, customId: String? = nil, result: @escaping FlutterResult) {
+  func createActivity(data: [String: Any], timerEndTimeMills: Int?, removeWhenAppIsKilled: Bool, staleIn: Int?, customId: String? = nil, result: @escaping FlutterResult) {
     let center = UNUserNotificationCenter.current()
     center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
       if let error = error {
@@ -259,7 +259,7 @@ public class LiveActivitiesPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
     } else {
         liveDeliveryAttributes = LiveActivitiesAppAttributes()
     }
-    let initialContentState = LiveActivitiesAppAttributes.LiveDeliveryData(appGroupId: appGroupId!)
+    let initialContentState = LiveActivitiesAppAttributes.LiveDeliveryData(appGroupId: appGroupId!, timerEndTimeMills: timerEndTimeMills)
     var deliveryActivity: Activity<LiveActivitiesAppAttributes>?
     let prefix = liveDeliveryAttributes.id
 

@@ -32,12 +32,14 @@ class LiveActivities {
   /// iOS 16.2+ and does nothing on on iOS 16.1
   Future<String?> createActivity(
     Map<String, dynamic> data, {
+    int? timerEndTimeMills,
     bool removeWhenAppIsKilled = false,
     Duration? staleIn,
   }) async {
     await _appGroupsFileService.sendFilesToAppGroups(data);
     return LiveActivitiesPlatform.instance.createActivity(
       data,
+      timerEndTimeMills: timerEndTimeMills,
       removeWhenAppIsKilled: removeWhenAppIsKilled,
       staleIn: staleIn,
     );
